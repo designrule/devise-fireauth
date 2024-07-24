@@ -10,7 +10,6 @@ module Devise
       #
       def authenticate!
         auth_params = authentication_hash
-        p auth_params
         return fail! unless auth_params[Fireauth.token_key]
 
         #
@@ -33,6 +32,14 @@ module Devise
           success!(resource)
         end
       end
+
+      def authenticate
+        auth_params = authentication_hash
+        resource = mapping.to.firebase_authentication(auth_params[Fireauth.token_key])
+        # If authenticated, stop immediately - or continue
+        resource ? success!(resource) : fail(resource)
+      end
+
     end
   end
 end
