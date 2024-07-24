@@ -10,7 +10,7 @@ module Devise
       #
       def authenticate!
         auth_params = authentication_hash
-        return fail! unless auth_params[Fireauth.token_key]
+        #return fail! unless auth_params[Fireauth.token_key]
 
         #
         # mapping.to is a wrapper over the resource model
@@ -18,7 +18,7 @@ module Devise
         # Treat the password as idToken
         resource = mapping.to.firebase_authentication(auth_params[Fireauth.token_key])
 
-        return fail! unless resource
+        #return fail! unless resource
 
         # remote_authentication method is defined in Devise::Models::RemoteAuthenticatable
         #
@@ -28,16 +28,17 @@ module Devise
         # If the block returns true the resource will be loged in
         # If the block returns false the authentication will fail!
         #
-        if validate(resource)
+        #if validate(resource)
           success!(resource)
-        end
+        #end
       end
 
       def authenticate
         auth_params = authentication_hash
         resource = mapping.to.firebase_authentication(auth_params[Fireauth.token_key])
         # If authenticated, stop immediately - or continue
-        resource ? success!(resource) : fail(resource)
+        success!(resource)
+        #resource ? success!(resource) : fail(resource)
       end
 
     end
