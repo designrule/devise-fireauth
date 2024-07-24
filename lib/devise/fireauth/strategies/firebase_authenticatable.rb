@@ -10,6 +10,7 @@ module Devise
       #
       def authenticate!
         auth_params = authentication_hash
+        p auth_params
         return fail! unless auth_params[Fireauth.token_key]
 
         #
