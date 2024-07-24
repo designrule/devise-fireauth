@@ -9,7 +9,7 @@ module Devise
       # Method called by warden to authenticate a resource.
       #
       def authenticate!
-        Rails.logger.error "FirebaseAuthenticatable#authenticate!"
+        binding.b
         auth_params = authentication_hash
         return fail! unless auth_params[Devise::Fireauth.token_key]
 
