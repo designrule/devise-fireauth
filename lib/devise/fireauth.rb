@@ -6,6 +6,7 @@ require_relative "../firebase_id_token"
 
 module Devise
   def self.fireauth
+    Rails.logger.info "Devise::Fireauth is deprecated and will be removed in the next major version. Please use Devise::Fireauth.config instead."
     yield(Devise::Fireauth.config)
     Devise::Fireauth.firebase_validator = FirebaseIDToken::Validator.new(aud: Devise::Fireauth.project_id)
   end
