@@ -16,7 +16,7 @@ module Devise
         # mapping.to is a wrapper over the resource model
         #
         # Treat the password as idToken
-        resource = mapping.to.firebase_authentication(auth_params)
+        resource = mapping.to.firebase_authentication(auth_params[Fireauth.token_key])
 
         return fail! unless resource
 
