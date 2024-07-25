@@ -36,7 +36,7 @@ module Devise
         # You might want to include some authentication data
         #
         def serialize_into_session(record)
-          [record.to_key, record.send(Fireauth.token_key)
+          [record.to_key, record.send(Fireauth.token_key)]
         end
 
         def from_firebase(auth_hash)
