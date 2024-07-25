@@ -25,6 +25,7 @@ module Devise
         # Recreates a resource from session data
         #
         def serialize_from_session(key, id_token)
+          puts id_token
           auth_hash = firebase_verification(id_token)
           return nil if auth_hash.empty?
           resource = to_adapter.get(key)
