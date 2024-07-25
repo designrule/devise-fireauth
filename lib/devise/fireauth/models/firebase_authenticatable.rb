@@ -24,10 +24,9 @@ module Devise
         #
         # Recreates a resource from session data
         #
-        def serialize_from_session(id)
-          resource = self.new
-          resource.id = id
-          resource
+        def serialize_from_session(key, id_token)
+          resource = to_adapter.get(key)
+          resource if resource && firebase_verification(id_token)
         end
 
         #
@@ -37,7 +36,7 @@ module Devise
         # You might want to include some authentication data
         #
         def serialize_into_session(record)
-          [record.id]
+          [record.to_key, record.send(Fireauth.token_key)
         end
 
         def from_firebase(auth_hash)
