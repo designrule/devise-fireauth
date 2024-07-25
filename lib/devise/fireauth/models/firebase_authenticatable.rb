@@ -15,35 +15,6 @@ module Devise
         # Overriden methods from Devise::Models::Authenticatable
         ####################################
 
-        #
-        # This method is called from:
-        # Warden::SessionSerializer in devise
-        #
-        # It takes as many params as elements had the array
-        # returned in serialize_into_session
-        #
-        # Recreates a resource from session data
-        #
-        def serialize_from_session(key, id_token)
-          p key
-          puts id_token
-          auth_hash = firebase_verification(id_token)
-          return nil if auth_hash.empty?
-          resource = to_adapter.get(key)
-          resource if resource
-        end
-
-        #
-        # Here you have to return and array with the data of your resource
-        # that you want to serialize into the session
-        #
-        # You might want to include some authentication data
-        #
-        def serialize_into_session(record)
-          p record
-          [record.to_key, record.send(Fireauth.token_key)]
-        end
-
         def from_firebase(auth_hash)
           raise NotImplementedError,
             "#{self.name} model must implement class method `from_firebase'"
