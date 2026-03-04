@@ -22,9 +22,10 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.required_ruby_version = ">= 2.7"
 
-  spec.add_runtime_dependency "activesupport", ">= 4"
-  spec.add_runtime_dependency "devise", "~> 4.0"
+  spec.add_runtime_dependency "activesupport", ">= 7.0"
+  spec.add_runtime_dependency "devise", ">= 4.0", "< 6.0"
   spec.add_runtime_dependency "dry-configurable", ">= 0.13"
   spec.add_runtime_dependency "jwt", ">= 1"
   spec.add_runtime_dependency "warden"

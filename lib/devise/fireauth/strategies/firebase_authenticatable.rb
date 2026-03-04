@@ -7,10 +7,6 @@ module Devise
         !token.nil?
       end
 
-      # Don't use Session
-      def store?
-        false
-      end
       #
       # For an example check : https://github.com/plataformatec/devise/blob/master/lib/devise/strategies/database_authenticatable.rb
       #
